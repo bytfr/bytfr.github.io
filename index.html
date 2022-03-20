@@ -220,13 +220,12 @@
 				</div>
 			<li class="mdui-list-item mdui-ripple filter" id="pending" style="display:none;"><div class="simple-spinner" id="loading"></div>文件加载中~~~
 			</li>
-			<from>
-				<div id="list">
+			
+			<div id="list">
+                    
 
-
-
-				</div>
-			</from>
+                    
+			</div>
 
 
 						</ul>
@@ -258,7 +257,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script type="text/javascript">
-	
+		
+		
 		window.onload = function(){
 			var url = window.location.href;
 			var url = url.split("?")[url.split("?").length-1];
@@ -268,8 +268,9 @@
 			console.log(url)
 
 			$.ajax({
-			            url:"http://110.42.148.82/api?"+url,
+			            url:"http://192.168.0.113/api?"+url,
 			            success:
+							
 			                function (result) {
 			                	console.log(result);
 			                	if(url[url.length-1]=="/"){
@@ -292,7 +293,7 @@
 			                			var div = document.createElement("div");
 			                			// 放置内容
 			                			if(Json["file_list"][i]["type"] == "file"){
-			                				div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/preview.html#?'+ Json["file_list"][i]["url"] +'"> target="_blank"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
+			                				div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/index.html#?'+ Json["file_list"][i]["url"] +'"> target="_blank"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
 			                				$('#list').after(div);
 			                				// div.id = "list";
 			                			}
@@ -306,11 +307,13 @@
 			                		var Json = JSON.parse(result.replace(/'/g,'"'));
 			                		window.location.href=Json["download_url"];
 			                	};
+							
 			                }
+							
 			        });
-			
-			
 		};
+	
+	
 	</script>
 </html>
 
