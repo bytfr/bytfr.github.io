@@ -264,7 +264,11 @@
 			// 刷新网页
 			location.reload();
 		}
-
+		
+		function openfile( href ){
+			// 切换网页
+			window.open(href);
+		}
 		
 		window.onload = function(){
 			var url = window.location.href;
@@ -300,7 +304,7 @@
 			                			var div = document.createElement("div");
 			                			// 放置内容
 			                			if(Json["file_list"][i]["type"] == "file"){
-			                				div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/index.html#?'+ Json["file_list"][i]["url"] +'" onmousedown="ChangePage(this.href)"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
+			                				div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/index.html#?'+ Json["file_list"][i]["url"] +'" onmousedown="openfile(this.href)"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
 			                				$('#list').after(div);
 			                				// div.id = "list";
 			                			}
