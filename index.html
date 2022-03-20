@@ -284,7 +284,7 @@
 			                		
 			                		if(Json["index"] != "/"){
 			                			var div=document.createElement("div");
-			                			div.innerHTML = '<li class="mdui-list-item mdui-ripple" id="backtolast"><a href="/index.html#?'+ Json["up_file"] +'"><div class="mdui-col-xs-12 mdui-col-sm-7"><i class="mdui-icon material-icons">arrow_upward</i>..</div><div class="mdui-col-sm-3 mdui-text-right"></div><div class="mdui-col-sm-2 mdui-text-right"></div></a></li>';
+			                			div.innerHTML = '<li class="mdui-list-item mdui-ripple" id="backtolast"><a href="/index.html#'+ Json["up_file"] +'"><div class="mdui-col-xs-12 mdui-col-sm-7"><i class="mdui-icon material-icons">arrow_upward</i>..</div><div class="mdui-col-sm-3 mdui-text-right"></div><div class="mdui-col-sm-2 mdui-text-right"></div></a></li>';
 			                			$("#up_file").after(div);
 			                			// div.id = "up_file";
 			                		};
@@ -306,6 +306,7 @@
 			                	}else{
 			                		var Json = JSON.parse(result.replace(/'/g,'"'));
 			                		window.location.href=Json["download_url"];
+									window.location.reload();
 			                	};
 							
 			                }
