@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
 		<title id="name"></title>
-		<link rel="stylesheet" href="./nexmoe/css/forkGh.css" />
+		<link rel="stylesheet" href="./statics/nexmoe/css/forkGh.css" />
 		<!--Safari浏览器-->
 		<link rel="apple-touch-icon" sizes="64x64" href="{{title}}">
 		<!--Chrome等浏览器-->
-		<link rel="icon" href="./nexmoe/img/OneIndexM.svg">
+		<link rel="icon" href="./statics/nexmoe/img/OneIndexM.svg">
 		<script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>
 
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
@@ -251,7 +251,7 @@
 		<!-- id改成自己的歌单号 -->
 		<!-- <script src="https://cdn.jsdelivr.net/gh/Mintimate/OneIndex-theme-nexmoes@latest/nexmoes/theme/personjs.js"> -->
 		<!-- </script> -->
-		<!-- <script src="./nexmoe/js/nexmoe.js"></script> -->
+		<!-- <script src="./statics/nexmoe/js/nexmoe.js"></script> -->
 
 	</body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -265,42 +265,50 @@
 				var url="/";
 			};
 			console.log(url)
-			$.get("http://110.42.148.82/api?"+url, function(result){
-				if(url[url.length-1]=="/"){
-					// 转换为列表
-					var Json = JSON.parse(result.replace(/'/g,'"'));
-					// 找到body
-					var container = $("body");
-					
-					$('#name').after(Json["name"]);
-					
-					
-					if(Json["index"] != "/"){
-						var div=document.createElement("div");
-						div.innerHTML = '<li class="mdui-list-item mdui-ripple" id="backtolast"><a href="/index.html#?'+ Json["up_file"] +'"><div class="mdui-col-xs-12 mdui-col-sm-7"><i class="mdui-icon material-icons">arrow_upward</i>..</div><div class="mdui-col-sm-3 mdui-text-right"></div><div class="mdui-col-sm-2 mdui-text-right"></div></a></li>';
-						$("#up_file").after(div);
-						// div.id = "up_file";
-					};
-					for(var i = 0; i < Json["file_list"].length; i++){
-						// 创建div
-						var div = document.createElement("div");
-						// 放置内容
-						if(Json["file_list"][i]["type"] == "file"){
-							div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/preview.html#?'+ Json["file_list"][i]["url"] +'"> target="_blank"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
-							$('#list').after(div);
-							// div.id = "list";
-						}
-						else{
-							div.innerHTML = '<li class="mdui-list-item mdui-ripple filter" ><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/index.html#?' + Json["file_list"][i]["url"] + '"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">folder_open</i><span>'+Json["file_list"][i]["name"]+'</span></div><div class="mdui-col-sm-3 mdui-text-right">' + Json["file_list"][i]["date"] + '</div><div class="mdui-col-sm-2 mdui-text-right">' + Json["file_list"][i]["size"] + '</div></a></li>';
-							$('#list').after(div);
-							// div.id = "list";
-						};
-					};
-				}else{
-					var Json = JSON.parse(result.replace(/'/g,'"'));
-					window.location.href=Json["download_url"];
-				};
-			});
+
+			$.ajax({
+			            url:"http://110.42.148.82/api?"+url,
+			            success:
+			                function (result) {
+			                	console.log(result);
+			                	if(url[url.length-1]=="/"){
+			                		// 转换为列表
+			                		var Json = JSON.parse(result.replace(/'/g,'"'));
+			                		// 找到body
+			                		var container = $("body");
+			                		
+			                		$('#name').after(Json["name"]);
+			                		
+			                		
+			                		if(Json["index"] != "/"){
+			                			var div=document.createElement("div");
+			                			div.innerHTML = '<li class="mdui-list-item mdui-ripple" id="backtolast"><a href="/index.html#?'+ Json["up_file"] +'"><div class="mdui-col-xs-12 mdui-col-sm-7"><i class="mdui-icon material-icons">arrow_upward</i>..</div><div class="mdui-col-sm-3 mdui-text-right"></div><div class="mdui-col-sm-2 mdui-text-right"></div></a></li>';
+			                			$("#up_file").after(div);
+			                			// div.id = "up_file";
+			                		};
+			                		for(var i = 0; i < Json["file_list"].length; i++){
+			                			// 创建div
+			                			var div = document.createElement("div");
+			                			// 放置内容
+			                			if(Json["file_list"][i]["type"] == "file"){
+			                				div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/preview.html#?'+ Json["file_list"][i]["url"] +'"> target="_blank"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
+			                				$('#list').after(div);
+			                				// div.id = "list";
+			                			}
+			                			else{
+			                				div.innerHTML = '<li class="mdui-list-item mdui-ripple filter" ><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/index.html#?' + Json["file_list"][i]["url"] + '"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">folder_open</i><span>'+Json["file_list"][i]["name"]+'</span></div><div class="mdui-col-sm-3 mdui-text-right">' + Json["file_list"][i]["date"] + '</div><div class="mdui-col-sm-2 mdui-text-right">' + Json["file_list"][i]["size"] + '</div></a></li>';
+			                				$('#list').after(div);
+			                				// div.id = "list";
+			                			};
+			                		};
+			                	}else{
+			                		var Json = JSON.parse(result.replace(/'/g,'"'));
+			                		window.location.href=Json["download_url"];
+			                	};
+			                }
+			        });
+			
+			
 		};
 	</script>
 </html>
