@@ -291,7 +291,7 @@
 			                		
 			                		if(Json["index"] != "/"){
 			                			var div=document.createElement("div");
-			                			div.innerHTML = '<li class="mdui-list-item mdui-ripple" id="backtolast"><a href="/index.html#'+ Json["up_file"] +'"><div class="mdui-col-xs-12 mdui-col-sm-7"><i class="mdui-icon material-icons">arrow_upward</i>..</div><div class="mdui-col-sm-3 mdui-text-right"></div><div class="mdui-col-sm-2 mdui-text-right"></div></a></li>';
+			                			div.innerHTML = '<li class="mdui-list-item mdui-ripple" id="backtolast"><a href="/index.html#'+ Json["up_file"] +'" onmousedown="ChangePage(this.href)"><div class="mdui-col-xs-12 mdui-col-sm-7"><i class="mdui-icon material-icons">arrow_upward</i>..</div><div class="mdui-col-sm-3 mdui-text-right"></div><div class="mdui-col-sm-2 mdui-text-right"></div></a></li>';
 			                			$("#up_file").after(div);
 			                			// div.id = "up_file";
 			                		};
@@ -300,7 +300,7 @@
 			                			var div = document.createElement("div");
 			                			// 放置内容
 			                			if(Json["file_list"][i]["type"] == "file"){
-			                				div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/index.html#?'+ Json["file_list"][i]["url"] +'"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
+			                				div.innerHTML = '<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="/index.html#?'+ Json["file_list"][i]["url"] +'" onmousedown="ChangePage(this.href)"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>'+ Json["file_list"][i]["name"] +'</span></div><div class="mdui-col-sm-3 mdui-text-right">'+ Json["file_list"][i]["date"] +'</div><div class="mdui-col-sm-2 mdui-text-right">'+ Json["file_list"][i]["size"] +'</div></a></li>';
 			                				$('#list').after(div);
 			                				// div.id = "list";
 			                			}
