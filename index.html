@@ -346,6 +346,12 @@
 							};
 						} else {
 							var Json = JSON.parse(result.replace(/'/g, '"'));
+							var div = document.createElement("div");
+							div.innerHTML =
+								'<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="" onmousedown="openfile(this.href)"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>' +
+								"文件下载中..." +
+								'</span></div><div class="mdui-col-sm-3 mdui-text-right"></div><div class="mdui-col-sm-2 mdui-text-right"></div></a></li>';
+							$('#list').after(div);
 							window.location.href = Json["download_url"];
 						};
 
