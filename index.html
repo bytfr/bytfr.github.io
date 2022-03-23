@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
-		<title id="name"></title>
+		<div id="name">
+			
+		</div>
 		<link rel="stylesheet" href="./statics/nexmoe/css/forkGh.css" />
-		<!--Safari浏览器-->
-		<link rel="apple-touch-icon" sizes="64x64" href="{{title}}">
 		<!--Chrome等浏览器-->
 		<link rel="icon" href="./statics/nexmoe/img/OneIndexM.svg">
 		<script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>
@@ -18,11 +18,6 @@
 		<style>
 			body {
 				background-color: #fff;
-				{% if background_img==""%}
-					background-image:url('/static/neo/img/background.jpeg') !important;
-				{% else %}
-					background-image:url({{ background_img }}) !important;
-				{% endif %}
 				padding-bottom: 60px;
 				background-position:auto !important;
 				background-size: cover !important;
@@ -145,15 +140,9 @@
 		</style>
 		<script src="https://cdn.jsdelivr.net/gh/xieqifei/StaticsResources/oneindexn/mdui/mdui.min.js"></script>
 	</head>
-	<body class="mdui-theme-primary-blue-grey mdui-theme-accent-blue">
-		<div class="mdui-container">
-			<div class="mdui-container-fluid">
-				<div class="mdui-toolbar nexmoe-item">
-					<a id="name"></a>
-                    
-										<!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>-->
-				</div>
-			</div>
+	<div id="title">
+		
+	</div>
 
 
 
@@ -279,18 +268,19 @@
 			console.log(url)
 
 			$.ajax({
-			            url:"http://110.42.148.82/api?"+url,
+			            url:"https://bytfr.pythonanywhere.com/api?"+url,
 			            success:
 							
 			                function (result) {
-			                	console.log(result);
 			                	if(url[url.length-1]=="/"){
 			                		// 转换为列表
 			                		var Json = JSON.parse(result.replace(/'/g,'"'));
 			                		// 找到body
 			                		var container = $("body");
 			                		
-			                		$('#name').after(Json["name"]);
+			                		$('#name').after('<title>'+Json["name"]+'</title>');
+			                		$('#title').after('<body class="mdui-theme-primary-blue-grey mdui-theme-accent-blue"><div class="mdui-container"><div class="mdui-container-fluid"><div class="mdui-toolbar nexmoe-item"><a>'+ Json["name"] +'</a></div></div>');
+									
 			                		
 			                		
 			                		if(Json["index"] != "/"){
