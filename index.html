@@ -290,19 +290,19 @@
 			console.log(url)
 
 			$.ajax({
-				url: "https://bytfr.pythonanywhere.com/api?" + url,
+				url: "http://bytfr.pythonanywhere.com/api?" + url,
 				success:
 
 					function(result) {
 			 		if (url[url.length - 1] == "/") {
 							// 转换为列表
-							var Json = JSON.parse(result.replace(/'/g, '"'));
+							var Json = result;
 							// 找到body
 							var container = $("body");
 
 							$('#name').after('<title>' + Json["name"] + '</title>');
 							$('#title').after('<div class="mdui-container-fluid"><div class="mdui-toolbar nexmoe-item"><a>'+ Json["name"] +'</a></div></div>')
-
+							document.body.style.background = "url("+Json["background_img"]+")";
 
 
 							if (Json["index"] != "/") {
@@ -345,7 +345,7 @@
 			  			};
 							};
 						} else {
-							var Json = JSON.parse(result.replace(/'/g, '"'));
+							var Json = result;
 							var div = document.createElement("div");
 							div.innerHTML =
 								'<li class="mdui-list-item file mdui-ripple filter"><div class="simple-spinner loading-gif" style="display: none;"></div><a href="" onmousedown="openfile(this.href)"><div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate"><i class="mdui-icon material-icons">insert_drive_file</i><span>' +
