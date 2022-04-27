@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<link type="text/css" href="css/getservers.css" rel="stylesheet" />
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="list">
+			
+		</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			$.ajax({
+				url: "http://110.42.148.82:9281/game/cure/get-servers",
+				success: function(result) {
+					var server_list = result["server_list"];
+					for(var i=0;i<server_list.length;i++){
+						var div = document.createElement("div");
+						div.innerHTML = "<div id='serverlist'><span id='name'>"+server_list[i]["name"] + "</span><span id='ip'>IP: " + server_list[i]["addr"] + "</span><span id='map'>地图: " + server_list[i]["map"] + "</span><span id='players'>玩家: " + server_list[i]["players"] + " / " + server_list[i]["max_players"] + "</span><span id='bots'>机器人: " + server_list[i]["bots"] + "</span></div>";
+						$('#list').after(div);
+					}
+				}
+			})
+		}
+	</script>
+</html>
