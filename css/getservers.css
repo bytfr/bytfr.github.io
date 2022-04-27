@@ -28,11 +28,11 @@
 #players {
 	position: absolute;
 	bottom: 24px;
-	left: 364px;
+	right: 150px;
 }
 
 #bots {
 	position: absolute;
 	bottom: 24px;
-	left: 460px;
+	right: 24px;
 }
